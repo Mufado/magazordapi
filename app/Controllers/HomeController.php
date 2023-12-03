@@ -1,20 +1,10 @@
 <?php
 
-class HomeController
+final class HomeController
 {
     function index()
     {
-        $persons = Person::selectAll();
-
-        $loader = new \Twig\Loader\FilesystemLoader("./Views/Home");
-        $twig = new \Twig\Environment($loader);
-        
-        $template = $twig->load("index.html");
-
-        
-
-        $content = $template->render();
-        echo $content;
+        Utils::renderTwigTemplate("./Views/Home", "index.html");
     }
 
     function response($data)
