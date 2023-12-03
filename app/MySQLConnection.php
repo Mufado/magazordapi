@@ -1,6 +1,6 @@
 <?php
 
-abstract class MySQLConnection
+final class MySQLConnection
 {
     private static $conInstance = null;
 

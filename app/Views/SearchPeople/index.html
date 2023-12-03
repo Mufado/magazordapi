@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Search People</title>
-  </head>
-  <body></body>
-</html>
+<a href="/?page=Home" class="btn btn-return"> Voltar </a>
 
-<script scr="./Scripts/index.js"></script>
+<a href="/?page=SeiLá" class="btn btn-add"> Cadastrar </a>
+
+{% for person in people %}
+<li class="person-item">
+  <span><strong>{{ person.name }}</strong> - {{ person.cpf }}</span>
+  <div class="buttons">
+    <button class="btn btn-edit">Editar</button>
+    <button class="btn btn-delete">Excluir</button>
+  </div>
+</li>
+{% endfor %}

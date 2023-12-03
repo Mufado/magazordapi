@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Search Contacts</title>
-  </head>
-  <body></body>
-</html>
+<a href="/?page=Home" class="btn btn-return"> Voltar </a>
 
-<script scr="./Scripts/index.js"></script>
+<a href="/?page=SeiLá" class="btn btn-add"> Cadastrar </a>
+
+{% for contact in contacts %}
+<li class="person-item">
+  <span>
+    <strong>{{ contact.description }}</strong> - {{ contact.idPerson }}
+  </span>
+  <div class="buttons">
+    <button class="btn btn-edit">Editar</button>
+    <button class="btn btn-delete">Excluir</button>
+  </div>
+</li>
+{% endfor %}

@@ -10,11 +10,10 @@ class HomeController
         $twig = new \Twig\Environment($loader);
         
         $template = $twig->load("index.html");
-        
-        $params = array();
-        $params['name'] = "Eu";
 
-        $content = $template->render($params);
+        
+
+        $content = $template->render();
         echo $content;
     }
 

@@ -4,6 +4,13 @@ class SearchContactsController
 {
     function index()
     {
-        echo file_get_contents("../Views/SearchContacts/index.html");
+        $contacts = Contact::selectAll();
+
+        $loader = new \Twig\Loader\FilesystemLoader("./Views/SearchContacts");
+        $twig = new \Twig\Environment($loader);
+        
+        $params["contacts"] = $contacts;
+        
+        echo $twig->load("index.html")->render($params);
     }
 }
