@@ -9,8 +9,8 @@ require_once "Models/Person.php";
 require_once "Models/Contact.php";
 
 require_once "Controllers/HomeController.php";
-require_once "Controllers/SearchPeopleController.php";
-require_once "Controllers/SearchContactsController.php";
+require_once "Controllers/PeopleController.php";
+require_once "Controllers/ContactsController.php";
 
 $layout = file_get_contents("Views/layout.html");
 

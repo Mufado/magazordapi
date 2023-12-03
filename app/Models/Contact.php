@@ -1,6 +1,6 @@
 <?php
 
-class Contact
+final class Contact
 {
     private int $id;
     private int $idPerson;
@@ -11,6 +11,6 @@ class Contact
     {
         $sql = "SELECT * FROM contact";
         
-        return Utils::executeSQL($sql, "Contact");
+        return MySQLConnection::executeSQL($sql, "Contact");
     }
 }

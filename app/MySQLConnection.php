@@ -11,4 +11,20 @@ final class MySQLConnection
 
         return self::$conInstance;
     }
+
+    public static function executeSQL($sql, $objType)
+    {
+        $con = MySQLConnection::getInstance();
+
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $results = array();
+
+        while ($row = $sql->fetchObject($objType)) {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
 }

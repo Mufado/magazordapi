@@ -1,6 +1,6 @@
 <?php
 
-class Person
+final class Person
 {
     private int $id;
     public string $name;
@@ -9,7 +9,7 @@ class Person
     public static function selectAll(): array
     {
         $sql = "SELECT * FROM person";
-        
-        return Utils::executeSQL($sql, "Person");
+
+        return MySQLConnection::executeSQL($sql, "Person");
     }
 }
