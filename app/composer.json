@@ -1,0 +1,18 @@
+{
+    "name": "magazord/api",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Magazord\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gustavo Girão",
+            "email": "56512641+Mufado@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "3.8.0"
+    }
+}
