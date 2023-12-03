@@ -8,17 +8,8 @@ class Person
 
     public static function selectAll(): array
     {
-        $con = MySQLConnection::getInstance();
         $sql = "SELECT * FROM person";
-        $sql = $con->prepare($sql);
-        $sql->execute();
-
-        $results = array();
-
-        while ($row = $sql->fetchObject("Person")) {
-            $results[] = $row;
-        }
         
-        return $results;
+        return Utils::executeSQL($sql, "Person");
     }
 }

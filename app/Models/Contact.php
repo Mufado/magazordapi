@@ -9,17 +9,8 @@ class Contact
 
     public static function selectAll(): array
     {
-        $con = MySQLConnection::getInstance();
         $sql = "SELECT * FROM contact";
-        $sql = $con->prepare($sql);
-        $sql->execute();
-
-        $results = array();
-
-        while ($row = $sql->fetchObject("Contact")) {
-            $results[] = $row;
-        }
         
-        return $results;
+        return Utils::executeSQL($sql, "Contact");
     }
 }

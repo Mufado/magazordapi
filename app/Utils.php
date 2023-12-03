@@ -9,4 +9,20 @@ final class Utils
         
         echo $twig->load($templateSrc)->render($params);
     }
+
+    public static function executeSQL($sql, $objType)
+    {
+        $con = MySQLConnection::getInstance();
+
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $results = array();
+
+        while ($row = $sql->fetchObject($objType)) {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
 }
