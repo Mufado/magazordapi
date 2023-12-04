@@ -1,6 +1,6 @@
 <?php
 
-$instance = new PDO("mysql:host=mysql;dbname=magazordapi;", "root", "1234");
+$instance = new PDO("mysql:host=127.0.0.1:3306;dbname=magazordapi;", "root", "1234");
 
 $sql =
   "CREATE TABLE `person` (
