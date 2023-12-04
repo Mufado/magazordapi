@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.person-list {
+  list-style: none;
+  padding: 0;
+}
+
+.person-item {
+  background-color: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.btn-return {
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.btn-add {
+  background-color: #4caf50;
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.btn-delete {
+  background-color: #f44336;
+}

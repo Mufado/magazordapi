@@ -2,10 +2,13 @@
 
 final class ContactsController
 {
+    private $viewSrc = "./Views/Contacts";
+
+    # GET
     function index()
     {
         $contacts = Contact::selectAll();
 
-        Utils::renderTwigTemplate("./Views/Contacts", "index.html", array("contacts" => $contacts));
+        Renderer::renderPage($this->viewSrc, "index", array("contacts" => $contacts));
     }
 }
