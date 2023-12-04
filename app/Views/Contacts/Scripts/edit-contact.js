@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+
     var formData = new FormData(form);
     var jsonData = {};
 
@@ -10,14 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
       jsonData[key] = value;
     });
 
-    makeRequest("POST", "Contacts/editContact", jsonData)
-      .then(function (response) {
-        window.location.replace("?page=Contacts");
-        return response.text();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
+    makeRequest("POST", "Contacts/editContact", jsonData).then(function () {
+      window.location.replace("?page=Contacts");
+    });
   });
 });
 

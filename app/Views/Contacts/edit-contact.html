@@ -1,15 +1,27 @@
 <h1>Editar contato</h1>
 <div class="form-container">
   <form id="form">
+    <div class="form-group" hidden>
+      <input type="number" name="id" value="{{ contact.id }}" required>
+    </div>
     <div class="form-group">
       <label for="type">Tipo:</label>
-      <input type="text" id="type" name="type" required />
+      <select id="type" name="type" required>
+        <option value="0" {% if contact.type == false %} selected {% endif %}>Telefone</option>
+        <option value="1" {% if contact.type == true %} selected {% endif %}>Email</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="description">Descrição:</label>
-      <input type="text" id="description" name="description" required />
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value="{{ contact.description }}"
+        required
+      />
     </div>
     <a href="?page=Contacts" class="btn btn-return"> Voltar </a>
-    <button type="button">Editar contato</button>
+    <button type="submit">Editar contato</button>
   </form>
 </div>

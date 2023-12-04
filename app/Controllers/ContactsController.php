@@ -17,20 +17,35 @@ final class ContactsController
     }
 
     function goToEditContactPage() {
-        Renderer::renderPage($this->viewSrc, "edit-contact", array());
+        try {
+            $contact = Contact::selectById($_GET['id'])[0];
+
+            Renderer::renderPage($this->viewSrc, "edit-contact", array("contact" => $contact));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
+
 
     function createContact() {
         $data = json_decode(file_get_contents('php://input'), true);
 
         Contact::createContact($data);
-        echo "Success";
+    }
+
+    function editContact() {
+        try {
+            $jsonData = json_decode(file_get_contents('php://input'), true);
+            
+            Contact::editContact($jsonData);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     function deleteContact() {
         $data = json_decode(file_get_contents('php://input'), true);
         
         Contact::deleteContact($data);
-        echo "Success";
     }
 }

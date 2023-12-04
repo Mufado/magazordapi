@@ -14,10 +14,10 @@
     {% if contact.type == 0 %} Telefone {% else %} Email {% endif %}
   </span>
   <div class="buttons">
-    <a href="/?page=Contacts&cd=goToEditContactPage" class="btn btn-edit">
+    <button onclick="processEvent(event, 'edit')" class="btn btn-edit">
       Editar
-    </a>
-    <button onclick="deleteContact(event)" class="btn btn-delete">
+    </button>
+    <button onclick="processEvent(event, 'delete')" class="btn btn-delete">
       Excluir
     </button>
   </div>
