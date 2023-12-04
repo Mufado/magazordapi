@@ -3,25 +3,34 @@ body {
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .container {
-  text-align: center;
+  width: 80%;
+  margin: auto;
 }
 
-.person-list {
-  list-style: none;
-  padding: 0;
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-return {
+  background-color: #3498db;
+}
+
+.btn-add {
+  background-color: #2ecc71;
 }
 
 .person-item {
   background-color: #fff;
-  margin: 10px;
+  margin: 10px 0;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -30,34 +39,23 @@ body {
   align-items: center;
 }
 
+.person-item span {
+  flex-grow: 1;
+}
+
 .buttons {
   display: flex;
-  gap: 10px;
 }
 
-.btn {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 10px;
-}
-
-.btn-return {
-  align-self: flex-start;
-  margin-right: auto;
-}
-
-.btn-add {
-  background-color: #4caf50;
-  align-self: flex-start;
-  margin-left: auto;
-}
-
+.btn-edit,
 .btn-delete {
-  background-color: #f44336;
+  margin-left: 10px;
+  background-color: #e74c3c;
+}
+
+/* Responsividade para telas pequenas */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
 }

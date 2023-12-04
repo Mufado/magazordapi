@@ -11,4 +11,8 @@ final class ContactsController
 
         Renderer::renderPage($this->viewSrc, "index", array("contacts" => $contacts));
     }
+
+    function goToCreateContactPage() {
+        Renderer::renderPage($this->viewSrc, "create-contact", array());
+    }
 }
