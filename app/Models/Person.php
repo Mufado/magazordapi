@@ -13,14 +13,23 @@ final class Person
     }
 
     public static function createPerson($properties) {
-        $sql = "INSERT INTO `person`(`name`, `cpf`) VALUES ('".$properties['name']."', '".$properties['cpf']."')";
+        $sql = "INSERT INTO `person`(`name`, `cpf`) VALUES (:name, :cpf)";
 
-        return MySQLConnection::executeSQL($sql);
+        $binds = array(
+            ":name" => $properties['name'],
+            ":cpf" => $properties['cpf']
+        );
+
+        return MySQLConnection::executeSQL($sql, null, $binds);
     }
 
     public static function deletePerson($properties) {
-        $sql = "DELETE FROM `person` WHERE id = ".$properties['id']."";
+        $sql = "DELETE FROM `person` WHERE id = :id";
+
+        $binds = array(
+            ":id" => $properties['id']
+        );
         
-        return MySQLConnection::executeSQL($sql);
+        return MySQLConnection::executeSQL($sql, null, $binds);
     }
 }

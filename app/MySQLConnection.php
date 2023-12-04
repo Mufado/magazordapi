@@ -25,19 +25,20 @@ final class MySQLConnection
     /**
      * Utility function to execute and SQL using the Singleton connection Instance.
      * 
-     * @param string $sql SQL query to execute
-     * @param string $objType Model type to return based on results
-     * 
-     * @return array SQL data returned by connection
+     * @param string $sql SQL query to execute.
+     * @param string $objType Model type to return based on results.
+     * @param array $binds Binds that PDO will use to connect the query with the parameters.
+     *  
+     * @return mixed SQL data returned by connection.
      */
-    public static function executeSQL($sql, $objType = null, $binders = null)
+    public static function executeSQL($sql, $objType = null, array $binds = null)
     {
         $con = self::getInstance();
 
         $sql = $con->prepare($sql);
 
-        if ($binders) {
-            foreach ($binders as $key => $value) {
+        if ($binds) {
+            foreach ($binds as $key => $value) {
                 $sql->bindValue($key, $value);
             }
         }

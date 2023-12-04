@@ -15,9 +15,15 @@ final class Contact
     }
 
     public static function createContact($properties) {
-        $sql = "INSERT INTO `contact`(`type`, `description`, `idPerson`) VALUES ('".$properties['type']."','".$properties['description']."','".$properties['idPerson']."')";
+        $sql = "INSERT INTO `contact`(`type`, `description`, `idPerson`) VALUES (:type, :description, :idPerson)";
         
-        return MySQLConnection::executeSQL($sql, "Contact");
+        $binds = array(
+            ":type" => $properties['type'],
+            ":description" => $properties['description'],
+            ":idPerson" => $properties['idPerson']
+        );
+
+        return MySQLConnection::executeSQL($sql, "Contact", $binds);
     }
 
     public static function deleteContact($properties) {
