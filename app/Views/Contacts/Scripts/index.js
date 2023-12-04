@@ -6,9 +6,26 @@ function processEvent(e, type) {
     case "edit":
       editContact(e);
       break;
+    case "search":
+      searchContacts(e);
     default:
       break;
   }
+}
+
+function searchContacts(e) {
+  e.preventDefault();
+
+  fetch(
+    "?page=Contacts&cb=searchContacts&txt=" +
+      encodeURIComponent(e.target.getElementsByTagName("input")[0].value)
+  )
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (data) {
+      document.documentElement.innerHTML = data;
+    });
 }
 
 function deleteContact(e) {

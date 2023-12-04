@@ -33,6 +33,14 @@ final class ContactsController
         Contact::createContact($data);
     }
 
+    function searchContacts() {
+        $data = urldecode($_GET['txt']);
+
+        $contacts = Contact::selectBySearchText($data);
+
+        Renderer::renderPage($this->viewSrc,'index', array("contacts" => $contacts));
+    }
+
     function editContact() {
         try {
             $jsonData = json_decode(file_get_contents('php://input'), true);

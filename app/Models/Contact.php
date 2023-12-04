@@ -14,6 +14,12 @@ final class Contact
         return MySQLConnection::executeSQL($sql, "Contact", array(':id' => $id));
     }
 
+    public static function selectBySearchText(string $txt): array {
+        $sql = "SELECT * FROM contact WHERE description LIKE :txt";
+
+        return MySQLConnection::executeSQL($sql, "Contact", array(":txt" => "%$txt%"));
+    }
+
     public static function selectAll(): array
     {
         $sql = "SELECT * FROM contact";
