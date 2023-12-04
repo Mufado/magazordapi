@@ -5,11 +5,13 @@
 </a>
 
 {% for person in people %}
-<li class="person-item">
+<li class="person-item" data-id="{{ person.id }}">
   <span><strong>{{ person.name }}</strong> - {{ person.cpf }}</span>
   <div class="buttons">
-    <button class="btn btn-edit">Editar</button>
-    <button class="btn btn-delete">Excluir</button>
+    <a class="btn btn-edit">Editar</a>
+    <button onclick="deletePerson(event)" class="btn btn-delete">
+      Excluir
+    </button>
   </div>
 </li>
 {% endfor %}

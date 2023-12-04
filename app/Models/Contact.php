@@ -2,8 +2,8 @@
 
 final class Contact
 {
-    private int $id;
-    private int $idPerson;
+    public int $id;
+    public int $idPerson;
     public bool $type;
     public string $description;
 
@@ -12,5 +12,17 @@ final class Contact
         $sql = "SELECT * FROM contact";
         
         return MySQLConnection::executeSQL($sql, "Contact");
+    }
+
+    public static function createContact($properties) {
+        $sql = "INSERT INTO `contact`(`type`, `description`, `idPerson`) VALUES ('".$properties['type']."','".$properties['description']."','".$properties['idPerson']."')";
+        
+        return MySQLConnection::executeSQL($sql, "Contact");
+    }
+
+    public static function deleteContact($properties) {
+        $sql = "DELETE FROM `contact` WHERE id = ".$properties['id']."";
+        
+        return MySQLConnection::executeSQL($sql);
     }
 }

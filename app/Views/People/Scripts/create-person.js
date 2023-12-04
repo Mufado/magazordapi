@@ -1,8 +1,6 @@
 let form = document.getElementById("form");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
   var formData = new FormData(form);
   var jsonData = {};
 
@@ -10,18 +8,23 @@ form.addEventListener("submit", function (e) {
     jsonData[key] = value;
   });
 
-  fetch("index.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "X-Action": "Home/createPerson",
-    },
-    body: JSON.stringify(jsonData),
-  })
+  makeRequest("POST", "People/createPerson", jsonData)
     .then(function (response) {
+      makeRequest("GET", "?page=People");
       return response.text();
     })
     .then(function (data) {
       console.log(data);
     });
 });
+
+function makeRequest(type, action, data = null) {
+  return fetch("index.php?page=People", {
+    method: type,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Action": action,
+    },
+    body: type === "GET" ? null : JSON.stringify(data),
+  });
+}

@@ -18,11 +18,15 @@ class PeopleController
 
     function createPerson() {
         $data = json_decode(file_get_contents('php://input'), true);
-        
-        echo $data;
-        
-        $resposta = array('status' => 'success', 'mensagem' => 'Dados recebidos com sucesso.');
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($resposta);
+
+        Person::createPerson($data);
+        echo "Success";
+    }
+
+    function deletePerson() {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        Person::deletePerson($data);
+        echo "Success";
     }
 }

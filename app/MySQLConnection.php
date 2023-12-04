@@ -30,12 +30,16 @@ final class MySQLConnection
      * 
      * @return array SQL data returned by connection
      */
-    public static function executeSQL($sql, $objType)
+    public static function executeSQL($sql, $objType = null)
     {
         $con = self::getInstance();
 
         $sql = $con->prepare($sql);
         $sql->execute();
+
+        if (!$objType) {
+            return array();
+        }
 
         $results = array();
 

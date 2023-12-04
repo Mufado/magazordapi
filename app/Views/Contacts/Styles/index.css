@@ -47,7 +47,11 @@ body {
   display: flex;
 }
 
-.btn-edit,
+.btn-edit {
+  margin-left: 10px;
+  background-color: orange;
+}
+
 .btn-delete {
   margin-left: 10px;
   background-color: #e74c3c;

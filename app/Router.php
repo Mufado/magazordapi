@@ -9,6 +9,9 @@
  * Recognizable GET elements:
  * - `page`: Receives the controller to instance.
  * - `cd`: Receives the callback function which will be called .
+ * 
+ * POST request structure:
+ * - `controller/method`: This can be found in the personalized header called `X-Action`.
  */
 class Router
 {
