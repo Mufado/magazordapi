@@ -18,7 +18,9 @@ if ! command_exists docker-compose; then
 fi
 
 if [ ! -e ".executed" ]; then
-    docker compose up -d
+    docker compose down
+
+    docker compose up --build -d
 
     php "migration.php"
 
@@ -27,3 +29,6 @@ if [ ! -e ".executed" ]; then
 else
     echo "Do not execute init.sh again. If you had any problem on installation process, please reclone the repository."
 fi
+
+echo "Pressione Enter para continuar..."
+read
