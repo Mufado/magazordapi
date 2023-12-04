@@ -13,14 +13,19 @@
 class Router
 {
     public function route() {
-        $controller = $this->getControllerName();
-
-        $callback = $this->getCallbackName($controller);
-
-        call_user_func(array(new $controller, $callback));
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case "GET":
+                $this->processGet();
+                break;
+            case "POST":
+                $this->processPost();
+                break;
+            default:
+                break;
+        }
     }
 
-    private function getControllerName() {
+    private function processGet() {
         $controller = "HomeController";
 
         if(isset($_GET['page'])) {
@@ -31,16 +36,29 @@ class Router
             $controller = "HomeController";
         }
 
-        return $controller;
-    }
-
-    private function getCallbackName($controllerName) {
         $callback = "index";
 
-        if(isset($_GET['cb']) && method_exists($controllerName, $_GET['cb'])) {
+        if(isset($_GET['cb']) && method_exists($controller, $_GET['cb'])) {
             $callback = $_GET['cb'];
         }
 
-        return $callback;
+        call_user_func(array(new $controller, $callback));
+    }
+
+    private function processPost() {
+        $uri = $_SERVER['HTTP_X_ACTION'];
+
+        $parts = explode('/', trim($uri, '/'));
+
+        $controller = array_shift($parts)."Controller";
+
+        $callback = array_shift($parts) ?: 'index';
+
+        if (!class_exists($controller) || !method_exists($controller, $callback)) {
+            $controller = "HomeController";
+            $callback = "index";
+        }
+
+        call_user_func(array(new $controller, $callback));
     }
 }

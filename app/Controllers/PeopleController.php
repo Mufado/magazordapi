@@ -1,6 +1,6 @@
 <?php
 
-final class PeopleController
+class PeopleController
 {
     private $viewSrc = "./Views/People";
 
@@ -16,9 +16,13 @@ final class PeopleController
         Renderer::renderPage($this->viewSrc, "create-person", array());
     }
 
-    function create() {
-        $data = json_decode(file_get_contents("php://input"), true);
-        var_dump($data);
-        var_dump($_POST);
+    function createPerson() {
+        $data = json_decode(file_get_contents('php://input'), true);
+        
+        echo $data;
+        
+        $resposta = array('status' => 'success', 'mensagem' => 'Dados recebidos com sucesso.');
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($resposta);
     }
 }

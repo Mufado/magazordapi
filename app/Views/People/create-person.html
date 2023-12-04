@@ -1,6 +1,6 @@
 <h1>Cadastrar pessoa</h1>
 <div class="form-container">
-  <form id="form">
+  <form id="form" method="post" action="Home/createPerson">
     <div class="form-group">
       <label for="name">Nome:</label>
       <input type="text" id="name" name="name" required />
@@ -10,6 +10,6 @@
       <input type="text" id="cpf" name="cpf" required />
     </div>
     <a href="?page=People" class="btn btn-return"> Voltar </a>
-    <button type="button" onclick="submitForm()">Cadastrar pessoa</button>
+    <button type="submit">Cadastrar pessoa</button>
   </form>
 </div>

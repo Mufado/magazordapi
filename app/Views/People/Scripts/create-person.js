@@ -1,26 +1,27 @@
-function submitForm() {
-  console.log("dfsafdsfsdfsdfasd");
-  var form = document.getElementById("form");
-  var formData = new FormData(form);
+let form = document.getElementById("form");
 
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  var formData = new FormData(form);
   var jsonData = {};
 
   formData.forEach(function (value, key) {
     jsonData[key] = value;
   });
 
-  fetch("../../../Controllers/PeopleController.php", {
+  fetch("index.php", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Action": "Home/createPerson",
     },
     body: JSON.stringify(jsonData),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Dados atualizados com sucesso!", data);
+    .then(function (response) {
+      return response.text();
     })
-    .catch((error) => {
-      console.error("Erro durante a requisição:", error);
+    .then(function (data) {
+      console.log(data);
     });
-}
+});
