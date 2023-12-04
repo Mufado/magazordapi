@@ -22,7 +22,7 @@ if [ ! -e ".executed" ]; then
 
     docker compose up --build -d
 
-    ./wait-for-it.sh mysql:3306 -t 0
+    ./wait-for-it.sh 127.0.0.1:3306 -t 0
 
     php "migration.php"
 
