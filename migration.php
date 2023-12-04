@@ -3,14 +3,14 @@
 $instance = new PDO("mysql:host=127.0.0.1:3306;dbname=magazordapi;", "root", "1234");
 
 $sql =
-  "CREATE TABLE `person` (
+  "CREATE TABLE IF NOT EXISTS `person` (
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `cpf` varchar(14) NOT NULL,
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   
-  CREATE TABLE `contact` (
+  CREATE TABLE IF NOT EXISTS `contact` (
     `id` int NOT NULL AUTO_INCREMENT,
     `type` boolean NOT NULL,
     `description` varchar(255) NOT NULL,

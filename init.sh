@@ -24,9 +24,8 @@ if [ ! -e ".executed" ]; then
 
     ./wait-for-it.sh 127.0.0.1:3306 -t 0
 
-    php "migration.php"
+    docker exec -i magazordapi-app-1 php -r "$(cat migration.php)"
 
-    # Cria o marcador para indicar que os comandos foram executados
     touch .executed
 else
     echo "Do not execute init.sh again. If you had any problem on installation process, please reclone the repository."
