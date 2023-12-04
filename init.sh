@@ -18,7 +18,7 @@ if ! command_exists docker-compose; then
 fi
 
 if [ ! -e ".executed" ]; then
-    docker compose down
+    rm -rf db_data
 
     docker compose up --build -d
 

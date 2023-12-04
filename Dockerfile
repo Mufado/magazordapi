@@ -1,3 +1,10 @@
+# Receive MySQL image
+FROM mysql:8.2.0
+
+# Sets initial migration
+ADD migration.sql /docker-entrypoint-initdb.d/migration.sql
+RUN chmod -R 775 /docker-entrypoint-initdb.d
+
 # Receive php image
 FROM php:8.3-apache
 
