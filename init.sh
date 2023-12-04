@@ -22,6 +22,8 @@ if [ ! -e ".executed" ]; then
 
     docker compose up --build -d
 
+    ./wait-for-it.sh mysql:3306 -t 0
+
     php "migration.php"
 
     # Cria o marcador para indicar que os comandos foram executados
