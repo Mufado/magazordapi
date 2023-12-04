@@ -18,11 +18,9 @@ if ! command_exists docker-compose; then
 fi
 
 if [ ! -e ".executed" ]; then
-    rm -rf db_data
+    rm -rf /db_data
 
     docker compose up --build -d
-
-    ./wait-for-it.sh 127.0.0.1:3306 -t 0
 
     touch .executed
 else
