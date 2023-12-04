@@ -3,17 +3,16 @@ function deletePerson(e) {
 
   makeRequest("POST", "People/deletePerson", jsonData)
     .then(function (response) {
+      window.location.replace("?page=People");
       return response.text();
     })
     .then(function (data) {
       console.log(data);
     });
-
-  fetch("a/??gdfsgfdsafsadHome&cd=index");
 }
 
 function makeRequest(type, action, data = null) {
-  return fetch("index.php/?page=Contact", {
+  return fetch("index.php/", {
     method: type,
     headers: {
       "Content-Type": "application/json; charset=utf-8",

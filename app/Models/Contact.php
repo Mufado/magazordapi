@@ -21,8 +21,8 @@ final class Contact
     }
 
     public static function deleteContact($properties) {
-        $sql = "DELETE FROM `contact` WHERE id = ".$properties['id']."";
+        $sql = "DELETE FROM `contact` WHERE id = :id";
         
-        return MySQLConnection::executeSQL($sql);
+        return MySQLConnection::executeSQL($sql, null, ['id' => $properties['id']]);
     }
 }

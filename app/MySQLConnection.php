@@ -14,7 +14,7 @@ final class MySQLConnection
     private function __clone() {}
 
 
-    public static function getInstance() {
+    public static function getInstance(): PDO {
         if (self::$instance == null) {
             self::$instance = new PDO("mysql:host=mysql;dbname=magazordapi;", "root", "1234");
         }
@@ -30,11 +30,18 @@ final class MySQLConnection
      * 
      * @return array SQL data returned by connection
      */
-    public static function executeSQL($sql, $objType = null)
+    public static function executeSQL($sql, $objType = null, $binders = null)
     {
         $con = self::getInstance();
 
         $sql = $con->prepare($sql);
+
+        if ($binders) {
+            foreach ($binders as $key => $value) {
+                $sql->bindValue($key, $value);
+            }
+        }
+
         $sql->execute();
 
         if (!$objType) {

@@ -28,7 +28,7 @@ body {
   background-color: #2ecc71;
 }
 
-.person-item {
+.contact-item {
   background-color: #fff;
   margin: 10px 0;
   padding: 15px;
@@ -39,7 +39,7 @@ body {
   align-items: center;
 }
 
-.person-item span {
+.contact-item span {
   flex-grow: 1;
 }
 

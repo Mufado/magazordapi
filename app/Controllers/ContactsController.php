@@ -29,7 +29,7 @@ final class ContactsController
 
     function deleteContact() {
         $data = json_decode(file_get_contents('php://input'), true);
-
+        
         Contact::deleteContact($data);
         echo "Success";
     }

@@ -5,13 +5,19 @@
 </a>
 
 {% for contact in contacts %}
-<li class="person-item">
+<li class="contact-item" data-id="{{ contact.id }}">
   <span>
-    <strong>{{ contact.description }}</strong> - {{ contact.idPerson }}
+    {{ contact.description }} -
+    <strong>Id do dono:</strong>
+    {{ contact.idPerson }}
+    <strong>Tipo:</strong>
+    {% if contact.type == 0 %} Telefone {% else %} Email {% endif %}
   </span>
   <div class="buttons">
     <button class="btn btn-edit">Editar</button>
-    <button class="btn btn-delete">Excluir</button>
+    <button onclick="deleteContact(event)" class="btn btn-delete">
+      Excluir
+    </button>
   </div>
 </li>
 {% endfor %}

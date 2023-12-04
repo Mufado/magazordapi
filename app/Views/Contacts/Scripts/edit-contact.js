@@ -1,26 +1,33 @@
-function updateContact() {
-  var contactType = document.getElementById("contactType").value;
-  var contactDescription = document.getElementById("contactDescription").value;
-  var personId = document.getElementById("personId").value;
+document.addEventListener("DOMContentLoaded", function () {
+  let form = document.getElementById("form");
 
-  fetch("backend_update_contact.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      contactType: contactType,
-      contactDescription: contactDescription,
-      personId: personId,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Resposta do servidor:", data);
-      alert("Contato atualizado com sucesso!");
-    })
-    .catch((error) => {
-      console.error("Erro:", error);
-      alert("Ocorreu um erro ao atualizar o contato.");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var formData = new FormData(form);
+    var jsonData = {};
+
+    formData.forEach(function (value, key) {
+      jsonData[key] = value;
     });
+
+    makeRequest("POST", "Contacts/editContact", jsonData)
+      .then(function (response) {
+        window.location.replace("?page=Contacts");
+        return response.text();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
+  });
+});
+
+function makeRequest(type, action, data = null) {
+  return fetch("index.php", {
+    method: type,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Action": action,
+    },
+    body: type === "GET" ? null : JSON.stringify(data),
+  });
 }
