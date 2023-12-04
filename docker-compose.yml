@@ -1,26 +1,25 @@
 services:
+  mysql:
+    build:
+      context: .
+      target: mysql
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
+    networks:
+      - general
+
   app:
     build: .
     volumes:
       - ./app:/var/www/html
     ports:
       - 80:80
+    depends_on:
+      - mysql
     networks:
       - general
-  mysql:
-    image: mysql:8.2.0
-    volumes:
-      - /migration.sql:/docker-entrypoint-initdb.d
-      - ./db_data:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      - MYSQL_DATABASE=magazordapi
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_USER=maga
-      - MYSQL_PASSWORD=zord
-    networks:
-      - general
+
   phpmyadmin:
     image: phpmyadmin:latest
     ports:
@@ -28,8 +27,11 @@ services:
     environment:
       - PMA_HOST=mysql
       - PMA_PORT=3306
+    depends_on:
+      - mysql
     networks:
       - general
+
 networks:
   general:
     driver: "bridge"

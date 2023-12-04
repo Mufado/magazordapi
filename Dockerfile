@@ -1,8 +1,17 @@
 # Receive MySQL image
-FROM mysql:8.2.0
+FROM mysql:8.2.0 as mysql
+
+# Configure database enviromnent constraints
+ENV MYSQL_DATABASE=magazordapi
+ENV MYSQL_ROOT_PASSWORD=1234
+ENV MYSQL_USER=maga
+ENV MYSQL_PASSWORD=zord
+
+# Configure database volume data
+VOLUME ./db_data /var/lib/mysql
 
 # Sets initial migration
-COPY /migration.sql /docker-entrypoint-initdb.d/
+COPY ./migration.sql /docker-entrypoint-initdb.d/
 RUN chmod -R 775 /docker-entrypoint-initdb.d
 
 # Receive php image
