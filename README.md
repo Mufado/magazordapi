@@ -1,4 +1,4 @@
-# CRUD MVC MagazordAPI
+# MagazordAPI - CRUD MVC utilizando PHP e Docker
 
 ## Instalação do projeto:
 
