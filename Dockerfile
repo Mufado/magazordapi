@@ -44,6 +44,6 @@ RUN composer require twig/twig:3.8.0
 RUN composer install --prefer-dist --no-dev --no-progress --no-interaction
 
 # Copies app data
-COPY app/ .
+COPY app/ /var/www/html/
 
 WORKDIR /
