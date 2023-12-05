@@ -13,7 +13,9 @@ final class ContactsController
     }
 
     function goToCreateContactPage() {
-        Renderer::renderPage($this->viewSrc, "create-contact", array());
+        $people = Person::selectAll();
+
+        Renderer::renderPage($this->viewSrc, "create-contact", array("people" => $people));
     }
 
     function goToEditContactPage() {
