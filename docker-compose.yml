@@ -12,6 +12,7 @@ services:
   app:
     build: .
     volumes:
+      - /var/www/html/vendor
       - ./app:/var/www/html
     ports:
       - 80:80
