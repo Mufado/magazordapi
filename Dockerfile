@@ -36,6 +36,11 @@ RUN apt-get -y install git
 #==============#
 # Dependencies #
 #==============#
+
+# Change to composer.json location
+WORKDIR /var/www/html/
+
+# Twig: https://twig.symfony.com/
 RUN composer require twig/twig:3.8.0
 
 # Install Composer dependencies
