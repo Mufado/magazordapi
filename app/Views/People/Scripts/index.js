@@ -1,3 +1,33 @@
+function processEvent(e, type) {
+  switch (type) {
+    case "delete":
+      deletePerson(e);
+      break;
+    case "edit":
+      editPerson(e);
+      break;
+    case "search":
+      searchPeople(e);
+    default:
+      break;
+  }
+}
+
+function searchPeople(e) {
+  e.preventDefault();
+
+  fetch(
+    "?page=People&cb=searchPeople&txt=" +
+      encodeURIComponent(e.target.getElementsByTagName("input")[0].value)
+  )
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (data) {
+      document.documentElement.innerHTML = data;
+    });
+}
+
 function deletePerson(e) {
   let jsonData = { id: e.target.parentNode.parentNode.getAttribute("data-id") };
 
@@ -9,6 +39,11 @@ function deletePerson(e) {
     .then(function (data) {
       console.log(data);
     });
+}
+
+function editPerson(e) {
+  let id = e.target.parentNode.parentNode.getAttribute("data-id");
+  window.location.replace("?page=People&cb=goToEditPersonPage&id=" + id);
 }
 
 function makeRequest(type, action, data = null) {

@@ -6,6 +6,13 @@ final class Person
     public string $name;
     public string $cpf;
 
+    public static function selectById($id): array
+    {
+        $sql = "SELECT * FROM person WHERE id = :id";
+        
+        return MySQLConnection::executeSQL($sql, "Person", array(':id' => $id));
+    }
+
     public static function selectAll(): array {
         $sql = "SELECT * FROM person";
 
@@ -20,6 +27,18 @@ final class Person
             ":cpf" => $properties['cpf']
         );
 
+        return MySQLConnection::executeSQL($sql, null, $binds);
+    }
+
+    public static function editPerson($properties) {
+        $sql = "UPDATE `person` SET `name` = :name,`cpf` = :cpf WHERE id = :id";
+
+        $binds = array(
+            ":id" => $properties['id'],
+            ":name" => $properties['name'],
+            ":cpf" => $properties['cpf'],
+        );
+        
         return MySQLConnection::executeSQL($sql, null, $binds);
     }
 

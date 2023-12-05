@@ -63,3 +63,15 @@ body {
     width: 90%;
   }
 }
+
+input[type="search"] {
+  width: 350px;
+  padding: 8px 20px 8px 45px;
+  border: #fff solid 2px;
+  font-size: 18px;
+  border-radius: 25px;
+  background-color: transparent;
+  background-position: 2% 50%;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}

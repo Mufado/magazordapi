@@ -20,7 +20,9 @@ fi
 if [ ! -e ".executed" ]; then
     rm -rf /db_data
 
-    docker compose up --build -d
+    docker compose down
+
+    docker compose up --build --force-recreate -d
 
     touch .executed
 else
