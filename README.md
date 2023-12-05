@@ -15,6 +15,14 @@
 
 4. Ser feliz! (E abrir a página localhost no seu browser...)
 
+## Padrões utilizados:
+
+- Singleton foi utilizado para instanciar a base de dados. Na classe contexto do sistema, eu utilizei não uma instância de si mesma, mas de uma conexão com o banco de dados. A classe Singleton em si nunca foi instanciada. Dessa forma, fiz com que o código utilize essa consulta para qualquer operação com o banco de dados. Apesar de não ser ativamente útil nesse projeto, pois mesmo sem ele o projeto funcionaria, decidi utilizar o Singleton por boa prática. Já que não preciso de várias conexões, me privei a somente uma.
+
+- Usei o Front Controller para rotear todas as conexões entre os métodos das controllers. Toda vez que uma requisição chega no arquivo `index.php`, ela é tratada por uma instância da classe roteadora. A classe de roteamento em si encontra a controller e o método a serem executados, que são executados de forma dinâmica. Esse padrão foi extremamente útil, pois foi exatamente ele que fez tudo se ligar no projeto.
+
+- Esse último é mais um adicional. Na classe `Renderer.php`, criei um sistema de renderização dinâmica de views. Ele possui uma função estática que é chamada pelas controllers, e, por meio de parâmetro, essa função encontra todos os arquivos front-end, relacionados a esse nome. Por exemplo, quando o método é chamado com o parâmetro `index`, ele encontra os arquivos `index.html`, `index.css` e `index.js` relacionados a tela, renderizando todos logo depois.
+
 # Refatoração Login.php:
 
 ### As principais alterações foram os desacoplamentos no método doLogin. Tirando isso, as alterações notáveis foram:
